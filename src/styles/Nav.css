@@ -1,0 +1,42 @@
+#Nav-menu {
+  display: flex;
+  flex-direction: row;
+  height: 5.3rem;
+  list-style-type: none;
+  font-family: 'Oswald';
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nav-head {
+  margin-right: 1rem;
+}
+
+img.nav-head {
+  margin-top: -0.8rem;
+}
+
+#btn-logout:hover {
+  color: #00c3ff;
+
+}
+
+#btn-logout, .nav-link {
+  display: flex;
+  background-color: transparent;
+  color: black;
+  margin-right: 2rem;
+  width: auto;
+  font-size: 2rem;
+  font-family: 'Oswald';
+  font-weight: bold;
+  border: 0.2rem solid black;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  align-self: center;
+}
+
+.navbar {
+  background-color: #f8e71c;
+  display: flex;
+  width: 100%;
+}

@@ -1,0 +1,44 @@
+.submit-btn {
+    float: right;
+    margin-right:3rem;
+    margin-top: 2rem;
+}
+
+.error-msg {
+    font-size: 1.2rem;
+    color: #515455;
+    border: 1px solid #515455b9;
+    background-color: #46b6d891;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    margin-right: 3rem;
+}
+
+.auth-flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-flex-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;  
+    margin-bottom: 1rem;
+    flex-wrap: nowrap;
+}
+
+.auth-flex-item {
+    vertical-align: middle;  
+    align-self: center;
+}
+
+input.auth-flex-item {
+    width: 60%;
+    margin-right: 3rem;
+    justify-self: auth-flex-end;
+}
+
+label.auth-flex-item {
+    margin: 0, 1rem, 1rem, 0;
+}
+  

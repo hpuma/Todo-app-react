@@ -1,0 +1,139 @@
+/* yellow: #f8e71c */
+/* blue: #00c3ff */
+
+html {
+  font: 62.5% sans-serif;
+}
+
+body {
+  font-size: 1.67rem;
+  font-family: "Heebo";
+  color: #000000;
+  margin: 0;
+}
+
+input {
+  width: 100%;
+  padding: 1rem;
+  height: 2rem;
+  border: none;
+  background: #f1f1f1;
+  margin-right: 2rem;
+}
+
+input:focus {
+  border: 0.2rem solid #00c3ff;
+  outline: none;
+  height: 1.6rem;
+}
+
+button {
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+button:hover:not([disabled]) {
+  opacity:1;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #00c3ff;
+}
+
+.App {
+  text-align: center;
+}
+
+/* main containers for layout */
+#site-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  padding-left: 3rem;
+  background-color:#ffffff;
+  margin: 0;
+  width: auto;
+  padding-bottom: 10rem;
+}
+
+.form-container {
+  padding-bottom: 6rem;
+  max-width: 50rem;
+}
+
+.input-add-container {
+  margin-right: 3rem;
+}
+
+div.loading {
+  padding: 3rem;
+  padding-left: 0;
+}
+
+/* signup/login/list flex display */
+.flex-row, .flex-row-add {
+  display: flex;
+  margin-bottom: 1rem;
+  flex-wrap: nowrap;
+}
+
+.flex-item {
+  vertical-align: middle;  
+  align-self: center;
+}
+
+.flex-row-add {
+  max-width: 35rem;
+}
+
+input.flex-item-add {
+  width: 100%;
+  margin-right: 2rem;
+}
+
+input.flex-item-add:focus {
+  width: 99%;
+} 
+
+label.flex-item {
+  width: 20%;
+}
+
+button.flex-item-add, button.submit-btn {
+  height: 4rem;
+  color: black;
+  border: 0.2rem solid black;
+  font-family: 'Oswald';
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 0 1rem 0.2rem 1rem;
+}
+
+button.flex-item-add:not([disabled]), button.submit-btn:not([disabled]) {
+  background-color: #00c3ff;
+}
+
+button.flex-item-add:disabled, button.submit-btn:disabled {
+  background-color: #46b6d8ce;
+  color: #515455;
+  border: 0.2rem solid #515455b9;
+}
+
+button.hidden-btn {
+  background-color: transparent;
+  color: black;
+}
+
+button.flex-item-add {
+  width: 50%;
+}

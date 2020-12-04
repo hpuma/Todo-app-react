@@ -1,0 +1,21 @@
+.dropdown-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 1rem;
+  align-items: flex-start;
+  margin: 0;
+  overflow-y: visible;
+  width: 10rem;
+}
+
+.dropdown-content {
+  background-color: #e7e4e4;
+  opacity: 1;
+  display: flex;
+  width: 100%;
+}
+
+.dropdown-content:hover {
+  background-color: #cac7c7;
+}

@@ -1,0 +1,12 @@
+img.footer {
+    margin-top: 1.3rem;
+    margin-right: 3rem;
+    float: right;
+}
+
+div.footer {
+    height: 5rem;
+    background-color: #f8e71c;
+    padding: 1rem;
+    margin-top: auto;
+}

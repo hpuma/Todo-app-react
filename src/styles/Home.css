@@ -1,0 +1,36 @@
+/* lists display on home pg */
+
+div.list-container {
+  width: 100%;
+  max-width: 30.5rem;
+  border: 0.2rem solid black;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  margin-right: 3rem;
+  overflow: auto;
+  max-height: 100rem;
+}
+
+.list-link {
+  color: #00c3ff;
+}
+
+.list-link:hover {
+  color: #f8e71c;
+}
+
+div.align-lists {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+ul {
+  padding: 0 0 0 2rem;
+  margin: 1rem 0 0 0;
+}
+
+.list-link {
+  font-size: 2rem;
+}
