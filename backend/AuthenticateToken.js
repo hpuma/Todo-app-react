@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from "jsonwebtoken";
 
 // Included in one of the parameters that needs a current valid log in.
 function AuthenticateToken(req, res, next){
@@ -12,5 +12,4 @@ function AuthenticateToken(req, res, next){
     })
 }
 
-
-exports.AuthenticateToken = AuthenticateToken;
+export default AuthenticateToken;

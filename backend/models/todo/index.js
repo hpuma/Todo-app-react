@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const List = require('./list.model');
+import mongoose from "mongoose";
 
+const Schema = mongoose.Schema;
 const todoSchema = new Schema(
   {
     list:{
@@ -24,4 +23,4 @@ const todoSchema = new Schema(
 );
 
 const Todo = mongoose.model('Todo', todoSchema);
-module.exports = Todo 
+export default Todo;
