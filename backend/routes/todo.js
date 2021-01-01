@@ -1,40 +1,39 @@
 import express from "express";
+import todoCtrl  from "controllers";
+import AuthenticateToken from "../AuthenticateToken";
 
-const todoCtrl = require("../controllers/todo");
-const manager = require("../AuthenticateToken");
-
-const router = express.Router();
+const todoRouter = express.Router();
 // GETS ALL THE TODOS OF THE CURRENT USER LOGGED IN
 // Route: /todo/  
 // We have User._id and req.user.user_name
-router.route('/todos').get(manager.AuthenticateToken, (req, res) => {
+todoRouter.route('/todos').get(AuthenticateToken, (req, res) => {
   todoCtrl.getAllTodos(req, res);
 });
 
 
 // GETS A SPECIFIC Todo BASED ON THE :todoId, object ID of todo
-router.route('/:todoId').get(manager.AuthenticateToken, (req, res) => {
+todoRouter.route('/:todoId').get(AuthenticateToken, (req, res) => {
     todoCtrl.getTodo(req, res);
 });
 
 
 // Creates a new todo for a specific list
 // Needs list._id(ObjID) as params and todo_task in the body
-router.route('/:listId').post(manager.AuthenticateToken, (req, res) => {
+todoRouter.route('/:listId').post(AuthenticateToken, (req, res) => {
     todoCtrl.createTodo(req, res);
 });
 
 // Updates a the todo_task of a specific todo 
 // Needs: todoId(ObjID)
-router.route('/:todoId').put(manager.AuthenticateToken, (req, res) => {
+todoRouter.route('/:todoId').put(AuthenticateToken, (req, res) => {
     todoCtrl.updateTodo(req, res);
 });
 
 // Deletes a todo from a specific list
 // Just relies on :todoId parameter
-router.route('/:todoId').delete(manager.AuthenticateToken, (req, res) => {
+todoRouter.route('/:todoId').delete(AuthenticateToken, (req, res) => {
     todoCtrl.deleteTodo(req, res);
 });
 
 
-module.exports = router;
+export default todoRouter;
