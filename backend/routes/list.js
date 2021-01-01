@@ -1,9 +1,10 @@
-const router = require('express').Router();
+import express from "express";
+
 const listCtrl = require("../controllers/list");
 const manager = require("../AuthenticateToken");
 const todoCtrl = require('../controllers/todo');
 
-
+const router = express.Router();
 // Route:   /list/  
 // We get all the lists that belong to a specific user.
 // We have the User._id from the token authentication to retrieve all lists

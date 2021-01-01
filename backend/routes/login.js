@@ -1,11 +1,9 @@
-require('dotenv').config();
-const express = require('express');
+import express from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { User } from "models";
+ 
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/user.model.js');
-
-
 // Checks for correct password -- CHANGE TO POST
 router.route('/auth').post(async (req, res) => {
     console.log("POST-LOGIN- - - - ");

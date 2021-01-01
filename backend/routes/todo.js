@@ -1,7 +1,9 @@
+import express from "express";
+
 const todoCtrl = require("../controllers/todo");
-const router = require("express").Router();
 const manager = require("../AuthenticateToken");
 
+const router = express.Router();
 // GETS ALL THE TODOS OF THE CURRENT USER LOGGED IN
 // Route: /todo/  
 // We have User._id and req.user.user_name

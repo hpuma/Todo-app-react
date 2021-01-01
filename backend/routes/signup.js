@@ -1,9 +1,9 @@
-const router = require('express').Router();
-let User = require('../models/user.model');
-const bcrypt = require("bcryptjs");
+import express from "express";
+import { User } from "models";
+import bcrypt from "bcryptjs";
 const saltRounds = 10
 
-
+const router = express.Router();
 // Checks if email or username already exists so we can prevent account duplication
 router.route('/auth').post(async (req, res) => {
     // When some of the sign up fields are missing
