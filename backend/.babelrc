@@ -8,7 +8,9 @@
               "./"
             ],
             "alias": {
-              "models": "./models"
+              "models": "./models",
+              "controllers": "./controllers",
+              "routes": "./routes"
             }
           }
         ]
