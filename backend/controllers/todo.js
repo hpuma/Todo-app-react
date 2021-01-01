@@ -1,4 +1,4 @@
-const Todo = require("../models/todo.model");
+import { Todo } from "models";
 
 // Finds the list._id base on the list name and the user._id
 const createTodo = async (req, res) => {

@@ -1,6 +1,5 @@
-const List = require("../models/list.model");
-const Todo = require("../models/todo.model");
-const mongoose = require('mongoose');
+import { List, Todo } from "models";
+import mongoose from "mongoose";
 
 // Creates a list through req.params.listId as its list_name and req.user._id as user
 //NOTE: MUST CHECK FOR DUPLICATES
