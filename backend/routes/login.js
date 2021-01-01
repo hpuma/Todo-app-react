@@ -3,9 +3,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "models";
  
-const router = express.Router();
+const loginRouter = express.Router();
 // Checks for correct password -- CHANGE TO POST
-router.route('/auth').post(async (req, res) => {
+loginRouter.route('/auth').post(async (req, res) => {
     console.log("POST-LOGIN- - - - ");
     if (!req.body.username || !req.body.password) {
         res.status(401).json({message: "Please fill out all fields"});
@@ -38,4 +38,4 @@ router.route('/auth').post(async (req, res) => {
         
 });
 
-module.exports = router
+export default loginRouter

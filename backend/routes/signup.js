@@ -1,11 +1,11 @@
 import express from "express";
 import { User } from "models";
 import bcrypt from "bcryptjs";
-const saltRounds = 10
 
-const router = express.Router();
+const saltRounds = 10
+const signUpRouter = express.Router();
 // Checks if email or username already exists so we can prevent account duplication
-router.route('/auth').post(async (req, res) => {
+signUpRouter.route('/auth').post(async (req, res) => {
     // When some of the sign up fields are missing
     if (!req.body.username || !req.body.password || !req.body.email || !req.body.name) {
         return res.status(401).json({message: 'Please fill out all fields'});
@@ -45,4 +45,4 @@ router.route('/auth').post(async (req, res) => {
         }
 });
 
-module.exports = router
+export default signUpRouter;

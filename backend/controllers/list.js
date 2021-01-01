@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 // Creates a list through req.params.listId as its list_name and req.user._id as user
 //NOTE: MUST CHECK FOR DUPLICATES
-const createList = async (req, res) => {
+export const createList = async (req, res) => {
   try {
     const newList = new List({
       user: req.user._id,
@@ -18,7 +18,7 @@ const createList = async (req, res) => {
   }
 };
 
-const getTodos = async (req, res) => {
+export const getTodos = async (req, res) => {
   try {
     const {listId} = req.params;
 
@@ -31,7 +31,7 @@ const getTodos = async (req, res) => {
   }
 };
 
-const getList = async (req, res) => {
+export const getList = async (req, res) => {
   try {
     const {listId} = req.params;
     const targetList = await List.findOne({_id:listId, user: req.user._id}).select('list_name');
@@ -43,7 +43,7 @@ const getList = async (req, res) => {
   }
 };
 
-const getAllLists = async (req, res) =>{
+export const getAllLists = async (req, res) =>{
   try{
     const allLists = await List.find({user: req.user._id}).select('list_name');
     res.json({allLists:allLists});
@@ -54,7 +54,7 @@ const getAllLists = async (req, res) =>{
   }
 };
 
-const updateList = async (req, res) => {
+export const updateList = async (req, res) => {
   try {
     const targetList = await List.findOneAndUpdate({user: req.user._id, _id: req.params.listId}, {list_name: req.body.list_name});
     res.json({message: "Successfully updated the list name"})
@@ -66,7 +66,7 @@ const updateList = async (req, res) => {
 };
 
 // Deletes a specific list and its corresponding todos
-const deleteList = async (req, res) => {
+export const deleteList = async (req, res) => {
   try {
     const [listId, userId] = [req.params.listId, req.user._id];
    
@@ -82,7 +82,7 @@ const deleteList = async (req, res) => {
 };
 
 // gets all lists and their todos as an array inside
-const getAllListsAndTodos = async (req, res) =>{
+export const getAllListsAndTodos = async (req, res) =>{
   try{
     const userId =  req.user._id;
     const allLists = await List.aggregate([
@@ -113,4 +113,4 @@ const getAllListsAndTodos = async (req, res) =>{
   }
 }
 
-module.exports = {createList, getList, getTodos, getAllLists, getAllListsAndTodos, updateList, deleteList}
+export default { createList, getList, getTodos, getAllLists, getAllListsAndTodos, updateList, deleteList };

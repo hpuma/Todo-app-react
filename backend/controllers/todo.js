@@ -1,7 +1,7 @@
 import { Todo } from "models";
 
 // Finds the list._id base on the list name and the user._id
-const createTodo = async (req, res) => {
+export const createTodo = async (req, res) => {
   try {
     const todo = new Todo({
       list: req.params.listId,
@@ -18,7 +18,7 @@ const createTodo = async (req, res) => {
 };
 
 // Retrieves a todo object by referring to the todoId in the parameters
-const getTodo = async (req, res) => { 
+export const getTodo = async (req, res) => { 
   try { 
     const targetTodo = Todo.findOne({_id: req.params.todoId, user: req.user._id});
     res.json({targetTodo: targetTodo});
@@ -31,7 +31,7 @@ const getTodo = async (req, res) => {
 
 
 // First finds all the list that belong to the user, then finds the todos for each of those lists.
-const getAllTodos = async (req, res) => {
+export const getAllTodos = async (req, res) => {
   try {
     const allTodos = await Todo.find({user: req.user._id});
     res.json({allTodos: allTodos});    
@@ -42,7 +42,7 @@ const getAllTodos = async (req, res) => {
   }
 };
 
-const updateTodo = async (req, res) => {
+export const updateTodo = async (req, res) => {
   try {
     const {todoId} = req.params;
     const updated = await Todo.findOneAndUpdate({_id: todoId, user: req.user._id}, {todo_task: req.body.todo_task});
@@ -56,7 +56,7 @@ const updateTodo = async (req, res) => {
 
 // Finds the list._id through the req.body.list_name
 // Then deletes a todo based on the list_id and req.body.todo_task
-const deleteTodo = async (req, res) => {
+export const deleteTodo = async (req, res) => {
   try {
     const {todoId} = req.params;
     const deleteTodo = await Todo.deleteOne({user: req.user._id, _id: todoId});
@@ -68,4 +68,4 @@ const deleteTodo = async (req, res) => {
   }
 };
 
-module.exports = {createTodo, getTodo, getAllTodos, updateTodo, deleteTodo};
+export default { createTodo, getTodo, getAllTodos, updateTodo, deleteTodo };
