@@ -1,17 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
+import routes from "routes";
+import { ATLAS_URI } from "/public-testing-env.js";
 
-
-const loginRouter = require('./routes/login');
-const signUpRouter = require('./routes/signup');
-const todoRouter = require('./routes/todo');
-const listRouter = require('./routes/list');
-
-
+const { loginRouter, signUpRouter, todoRouter, listRouter } = routes;
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5000;
 
-const uri = process.env.ATLAS_URI;
+const uri = ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true}
 );
 
@@ -20,7 +16,6 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
 
-app.use(cors());
 app.use(express.json());
 
 app.get('/health-check', (req, res, next) => {
@@ -35,7 +30,6 @@ app.use((req, res, next) => {
 app.get('/health-check', (req, res, next) => {
     res.status(200).json({ ok: 1})
 })
-
 
 app.use('/todo/login', loginRouter);
 app.use('/todo/signup', signUpRouter);
