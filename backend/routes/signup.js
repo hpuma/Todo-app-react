@@ -1,7 +1,8 @@
 import express from "express";
-import { User } from "models";
+import models from "models";
 import bcrypt from "bcryptjs";
 
+const { User } = models;
 const saltRounds = 10
 const signUpRouter = express.Router();
 // Checks if email or username already exists so we can prevent account duplication
@@ -11,11 +12,11 @@ signUpRouter.route('/auth').post(async (req, res) => {
         return res.status(401).json({message: 'Please fill out all fields'});
     }
     // Renaming req information
-    userInfo = {
-    name: req.body.name,
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
+    const userInfo = {
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
     }
     // Checking for an account that already exists with the current credentials submitted.
     const result = await User.findOne({$or: [{username: userInfo.username}, {email: userInfo.email}]}).catch(err=>console.log(err));

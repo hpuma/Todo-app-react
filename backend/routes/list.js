@@ -1,8 +1,8 @@
 import express from "express";
-import { listCtrl, todoCtrl } from "controllers";
+import controllers from "controllers";
 import AuthenticateToken from "../AuthenticateToken";
 
-
+const { listCtrl, todoCtrl } = controllers;
 const listRouter = express.Router();
 // Route:   /list/  
 // We get all the lists that belong to a specific user.

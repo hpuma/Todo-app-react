@@ -1,6 +1,7 @@
-import { List, Todo } from "models";
+import models from "models";
 import mongoose from "mongoose";
 
+const { List, Todo } = models;
 // Creates a list through req.params.listId as its list_name and req.user._id as user
 //NOTE: MUST CHECK FOR DUPLICATES
 export const createList = async (req, res) => {

@@ -1,8 +1,9 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { User } from "models";
+import models from "models";
  
+const { User } = models;
 const loginRouter = express.Router();
 // Checks for correct password -- CHANGE TO POST
 loginRouter.route('/auth').post(async (req, res) => {

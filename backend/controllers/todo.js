@@ -1,5 +1,6 @@
-import { Todo } from "models";
+import models from "models";
 
+const { Todo } = models;
 // Finds the list._id base on the list name and the user._id
 export const createTodo = async (req, res) => {
   try {

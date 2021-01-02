@@ -1,7 +1,8 @@
 import express from "express";
-import todoCtrl  from "controllers";
+import controllers  from "controllers";
 import AuthenticateToken from "../AuthenticateToken";
 
+const { todoCtrl } = controllers;
 const todoRouter = express.Router();
 // GETS ALL THE TODOS OF THE CURRENT USER LOGGED IN
 // Route: /todo/  
