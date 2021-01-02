@@ -6,7 +6,7 @@ const { User } = models;
 const saltRounds = 10
 const signUpRouter = express.Router();
 // Checks if email or username already exists so we can prevent account duplication
-signUpRouter.route('/auth').post(async (req, res) => {
+signUpRouter.route('/auth').post(async (req, res, next) => {
     // When some of the sign up fields are missing
     if (!req.body.username || !req.body.password || !req.body.email || !req.body.name) {
         return res.status(401).json({message: 'Please fill out all fields'});
@@ -18,32 +18,28 @@ signUpRouter.route('/auth').post(async (req, res) => {
         email: req.body.email,
         password: req.body.password,
     }
-    // Checking for an account that already exists with the current credentials submitted.
-    const result = await User.findOne({$or: [{username: userInfo.username}, {email: userInfo.email}]}).catch(err=>console.log(err));
-        if(result === null){
-            // Handle possible successful account creation
-            console.log("Account Creation Possible");
-            const passHash = bcrypt.hashSync(userInfo.password, saltRounds);
 
-            if (passHash){
-                userInfo.password = passHash;
-                // Saving the new user to the database
-                const newUser = new User(userInfo);
-                const userCreated = await newUser.save();
-                // User creation status.
-                if (userCreated){   
-                    console.log(userCreated);
-                    res.json({message: "Your account has been created successfully"});
-                }else{
-                    res.status(403).json({message: "There was an error creating your account"});
-                }
-                return;
-            } 
-        } else {// Handle unsuccessful account creation because account already exists
-            console.log("ACCOUNT EXISTS:" + result);
-            res.status(403).json({message: "This account already exists"});
-            return;
+    try {
+        await User.findOne({$or: [{username: userInfo.username}, {email: userInfo.email}]}).catch(err=>console.log(err));
+        // Handle possible successful account creation
+        console.log("Account Creation Possible");
+        const passHash = bcrypt.hashSync(userInfo.password, saltRounds);
+
+        userInfo.password = passHash;
+        // Saving the new user to the database
+        const newUser = new User(userInfo);
+        const userCreated = await newUser.save();
+        // User creation status.
+        if (userCreated){   
+            console.log(userCreated);
+            res.json({message: "Your account has been created successfully"});
         }
+        next();
+    }
+    catch (error) {
+        console.error(error);
+        res.status(403).json(error.message);
+    }
 });
 
 export default signUpRouter;
