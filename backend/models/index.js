@@ -1,9 +1,9 @@
-import list from "./list";
-import todo from "./todo";
-import user from "./user";
+import List from "./list";
+import Todo from "./todo";
+import User from "./user";
 
 export default {
-    list,
-    todo,
-    user
+    List,
+    Todo,
+    User
 };
