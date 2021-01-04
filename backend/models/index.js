@@ -5,5 +5,5 @@ import User from "./user";
 export default {
     List,
     Todo,
-    User
+    User,
 };
