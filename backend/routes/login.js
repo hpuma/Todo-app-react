@@ -34,16 +34,20 @@ loginRouter.route('/auth').post(async (req, res, next) => {
     const user = { username, _id };
     console.log("Correct Login:"+ JSON.stringify(user));
 
-    const accessToken = jwt.sign(user, ACCESS_TOKEN_SECRET);
+    const token = jwt.sign(user, ACCESS_TOKEN_SECRET);
 
-    console.log("TOKEN: "+ accessToken);
+    console.log("TOKEN: "+ token);
+   
     res.json({
+      userId: _id,
       message: "You have successfully logged in",
       name,
-      token: accessToken });
+      token});
+    next();
 
   } catch (error) {
     console.error(error);
+    return res.status(401).json({ message: "Please enter valid credentials" });
   }
 });
 

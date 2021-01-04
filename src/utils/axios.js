@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //check env for baseUrl
-const API_URL =  (process.env.NODE_ENV === "production") ? "https://api.lunchbox.dev/todo/" : "http://localhost:5000/todo/";
+const API_URL =  "http://localhost:5000/todo/";
 
 //create instance
 const AxiosInstance = axios.create({
