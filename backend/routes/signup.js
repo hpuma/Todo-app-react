@@ -1,45 +1,51 @@
-import express from "express";
-import models from "models";
 import bcrypt from "bcryptjs";
+import express from "express";
+import Joi from "joi";
+import models from "models";
 
 const { User } = models;
 const saltRounds = 10
 const signUpRouter = express.Router();
 // Checks if email or username already exists so we can prevent account duplication
 signUpRouter.route('/auth').post(async (req, res, next) => {
-    // When some of the sign up fields are missing
-    if (!req.body.username || !req.body.password || !req.body.email || !req.body.name) {
-        return res.status(401).json({message: 'Please fill out all fields'});
-    }
-    // Renaming req information
-    const userInfo = {
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
+  // Validation schema for sign-up
+  const checkSignUp = Joi.object().keys({
+    name:Joi.string().min(2).trim(),
+    username: Joi.string().required().min(3).trim(),
+    email: Joi.string().required().trim(), // .email() -- Make sure the input is an email
+    password: Joi.string().required().min(3).trim(), //.regex(/^[a-zA-Z0-9]{3,30}$/) -- For password security
+  });
+ 
+  try {
+    const {
+      body
+    } = req;
+    // Validate data sent then destructure values
+    let validSignUp = await checkSignUp.validate(body).value;
+    let { username, email, password } = validSignUp;
+
+    // Check for duplicate account and return possible duplicated values
+    const userExists = await User.findOne({$or: [{ username }, { email }]}).select("username email");
+    if (userExists){
+      console.log("Account Exists:\t" + userExists);
+      return res.status(403).json({ message: "This account already exists" });
     }
 
-    try {
-        await User.findOne({$or: [{username: userInfo.username}, {email: userInfo.email}]}).catch(err=>console.log(err));
-        // Handle possible successful account creation
-        console.log("Account Creation Possible");
-        const passHash = bcrypt.hashSync(userInfo.password, saltRounds);
+    // Hash the password and store in creation object
+    console.log("Account Creation Possible ...");
+    validSignUp.password = bcrypt.hashSync(password, saltRounds);
 
-        userInfo.password = passHash;
-        // Saving the new user to the database
-        const newUser = new User(userInfo);
-        const userCreated = await newUser.save();
-        // User creation status.
-        if (userCreated){   
-            console.log(userCreated);
-            res.json({message: "Your account has been created successfully"});
-        }
-        next();
+    // Saving the new user to the database with the encrypted password
+    const userCreated = await User.create(validSignUp);
+    // User creation status.
+    if (userCreated){   
+      console.log(userCreated);
+      res.json({message: "Your account has been created successfully"});
     }
-    catch (error) {
-        console.error(error);
-        res.status(403).json(error.message);
-    }
+    next();
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 export default signUpRouter;
