@@ -10,6 +10,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Tier 5: Style app using styled components
 * Tier 6: Signup/Login form to allow for multiple users and their personal lists
 
+Frontend: Florence
+
+Backend: Albert & Henry
+
 **Setup** 
 
 In the root directory (LB-TodoApp) and the backend directory (LB-TodoApp/backend) run:
@@ -24,7 +28,7 @@ To run app concurrently (backend and frontend together), in either the root or b
 npm run dev 
 ```
 
-**Runnning FRONTEND ONLY**
+**Running FRONTEND ONLY**
 
 In the root directory run:
 ```bash
