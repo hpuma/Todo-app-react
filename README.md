@@ -14,6 +14,9 @@ Frontend: Florence
 
 Backend: Albert & Henry
 
+**Demo**
+
+
 **Setup** 
 
 In the root directory (LB-TodoApp) and the backend directory (LB-TodoApp/backend) run:
