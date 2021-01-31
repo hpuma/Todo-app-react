@@ -17,6 +17,8 @@ Backend: Albert & Henry
 **Demo**
 
 
+<img src="Project_Demo.gif" height="400" width="600">
+
 **Setup** 
 
 In the root directory (LB-TodoApp) and the backend directory (LB-TodoApp/backend) run:
